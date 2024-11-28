@@ -1,0 +1,91 @@
+/* Estilo geral */
+body {
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #1c1c1c,
+    #2a2a2a
+  ); /* Fundo escuro com gradiente */
+  color: #ffffff; /* Texto branco */
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo do cabeçalho */
+header {
+  text-align: center;
+  background: #00ffff; /* Vermelho vibrante inspirado no GOTY */
+  color: #ffffff;
+  padding: 20px 0;
+  border-bottom: 3px solid #00ffff; /* Linha dourada para contraste */
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Container da tabela */
+.cabecalho {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 900px;
+  background: #1c1c1c; /* Fundo escuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* Estilo da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: #ffffff;
+  text-align: left;
+  font-size: 1rem;
+}
+
+thead {
+  background: #00ffff; /* Dourado para destaque */
+  color: #1c1c1c; /* Contraste no texto */
+}
+
+thead th {
+  padding: 15px;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05); /* Listras suaves */
+}
+
+tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1); /* Destaque ao passar o mouse */
+  cursor: pointer;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+}

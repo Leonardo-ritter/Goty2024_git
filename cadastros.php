@@ -74,6 +74,7 @@
             ]);
 
             echo "Usuário cadastrado com sucesso e dados adicionais registrados!";
+            header("Location: login.php");
         }
 
     } catch (PDOException $e) {
