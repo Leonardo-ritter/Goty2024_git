@@ -1,24 +1,26 @@
 <?php
 session_start();
 
+//VERIFICA SE ESTA LOCAGO NA SESSAO
 if (!isset($_SESSION['user_id'])) {
-    echo "Você precisa estar logado para votar.";
+    echo "Você precisa estar logado para verificar seu voto.";
     exit;
 }
 
+// CONECTAR BD
 $host = 'localhost';
 $dbname = 'cadastro_dos_clientes';
 $user = 'root';
-$senha = '';
+$senha = ''; 
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $senha);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    //RECUPERA ID DO USUARIO
     $usuario_id = $_SESSION['user_id'];
-    $jogo_id = $_POST['jogo_id'];
 
-    //VERIFICA SE VOTOU EM ALGUM OUTRO JOGO
+    //VERIFICA SE O USUARIO JA VOTOU EM ALGUM JOGO
     $sqlVerificarVoto = "SELECT COUNT(*) FROM votos WHERE usuario_id = :usuario_id";
     $stmt = $pdo->prepare($sqlVerificarVoto);
     $stmt->execute([':usuario_id' => $usuario_id]);
@@ -26,16 +28,10 @@ try {
 
     if ($votoExistente > 0) {
         echo "Você já votou em outro jogo. Você pode votar apenas uma vez.";
-        exit;
+    } else {
+        echo "Pode votar!";
     }
-
-    //SE NAO HOUVER VOTO IRÁ REGISTRAR O VOTO.
-    $sqlRegistrarVoto = "INSERT INTO votos (usuario_id, jogo_id) VALUES (:usuario_id, :jogo_id)";
-    $stmt = $pdo->prepare($sqlRegistrarVoto);
-    $stmt->execute([':usuario_id' => $usuario_id, ':jogo_id' => $jogo_id]);
-
-    echo "Voto registrado com sucesso!";
 } catch (PDOException $e) {
-    echo "Erro ao conectar ou registrar o voto: " . $e->getMessage();
+    echo "Erro ao verificar voto: " . $e->getMessage();
 }
 ?>
